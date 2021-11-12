@@ -1,10 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Switch, Route, Link, useRouteMatch} from 'react-router-dom';
 import { Customers } from './AppCustomers';
 import { Products } from './AppProducts';
+import { Customer } from './AppSingleCustomer';
 
 function App() {
+
   return (
     <Router>
       <div>
@@ -20,12 +22,16 @@ function App() {
           </li>
         </ul>
         <Switch>
-          <Route path='/customers'>
+          <Route exact path='/customers'>
             <Customers/>
           </Route>
-          <Route path='/products'>
+          <Route exact path='/products'>
             <Products/>
+          </Route>                          
+          <Route path={`/customers/:customerId`}>
+              <Customer/>
           </Route>
+
         </Switch>
       </div>
     </Router>
